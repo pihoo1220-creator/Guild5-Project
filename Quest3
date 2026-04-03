@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+class CaesarCipher() {
+private:
+int shiftValue;
+
+protected:
+string encode(const string& message) {
+    //filler
+}
+
+public:
+void setShiftValue(int value) {
+    //filler
+}
+string decode(const string& message) {
+    //filler
+}
+
+class Rot13Cipher : public CaesarCipher
+
+};
+
+int main() {
+
+}
