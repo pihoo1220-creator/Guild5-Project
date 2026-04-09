@@ -6,8 +6,24 @@ private:
 int shiftValue;
 
 protected:
-string encode(const string& message) {
-    //filler
+string encode(string message, int shiftValue){
+        string words = "";
+        for (char letter: message){
+            if(letter >= 'a' && letter <= 'z'){
+                int newletter = ((int(letter) - 'a' + shiftValue) % 26) + 'a';
+                words += (char)newletter;
+            }
+            else if(letter >= 'A' && letter <= 'Z') {
+                int newletter = ((int(letter) - 'A' + shiftValue) % 26) + 'A';
+                words += (char)newletter;
+            }
+            else {
+                words += letter;
+            }
+        }
+        return words;
+    }
+
 }
 
 public:
