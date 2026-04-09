@@ -1,41 +1,50 @@
 #include <iostream>
 using namespace std;
 
-class CaesarCipher() {
+class CaesarCipher {
 private:
 int shiftValue;
 
+
 protected:
-string encode(string message, int offset){
-        string words = "";
-        for (char letter: message){
-            if(letter >= 'a' && letter <= 'z'){
-                int newletter = ((int(letter) - 'a' + offset) % 26) + 'a';
-                words += (char)newletter;
+    string encode(string message, int offset){
+            string words = "";
+            for (char letter: message){
+                if(letter >= 'a' && letter <= 'z'){
+                    int newletter = ((int(letter) - 'a' + offset) % 26) + 'a';
+                    words += (char)newletter;
+                }
+                else if(letter >= 'A' && letter <= 'Z') {
+                    int newletter = ((int(letter) - 'A' + offset) % 26) + 'A';
+                    words += (char)newletter;
+                }
+                else {
+                    words += letter;
+                }   
             }
-            else if(letter >= 'A' && letter <= 'Z') {
-                int newletter = ((int(letter) - 'A' + offset) % 26) + 'A';
-                words += (char)newletter;
-            }
-            else {
-                words += letter;
-            }
-        }
         return words;
     }
 
 public:
-void setShiftValue(int value) {
-    //filler
-}
-string decode(const string& message) {
+    void setShiftValue(int value) {
+        shiftValue = value;
+    }
+    
+    int getShiftValue(){
+        return shift;
+    }
+    
+string decode(string message, int offset) {
     //to decode 26 minus shift value
-    shift = 26 - shiftValue;
-    encode(message, shift);
-}
+    int shift = 26 - offset;
+    return encode(message, shift);
+    }
+};
 
-class Rot13Cipher : public CaesarCipher
-
+class Rot13Cipher : public CaesarCipher{
+    string encode(string message){
+    return CaesarCipher::encode(message, 13);
+    }
 };
 
 int main() {
