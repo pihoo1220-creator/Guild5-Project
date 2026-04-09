@@ -6,16 +6,32 @@ private:
 int shiftValue;
 
 protected:
-string encode(const string& message) {
-    //filler
-}
+string encode(string message, int offset){
+        string words = "";
+        for (char letter: message){
+            if(letter >= 'a' && letter <= 'z'){
+                int newletter = ((int(letter) - 'a' + offset) % 26) + 'a';
+                words += (char)newletter;
+            }
+            else if(letter >= 'A' && letter <= 'Z') {
+                int newletter = ((int(letter) - 'A' + offset) % 26) + 'A';
+                words += (char)newletter;
+            }
+            else {
+                words += letter;
+            }
+        }
+        return words;
+    }
 
 public:
 void setShiftValue(int value) {
     //filler
 }
 string decode(const string& message) {
-    //filler
+    //to decode 26 minus shift value
+    shift = 26 - shiftValue;
+    encode(message, shift);
 }
 
 class Rot13Cipher : public CaesarCipher
