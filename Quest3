@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 class CaesarCipher {
@@ -46,6 +48,11 @@ class Rot13Cipher : public CaesarCipher{
     return CaesarCipher::encode(message, 13);
     }
 };
+
+int getRandomShift(int max) {
+    srand(time(0));
+    return rand() % max;
+}
 
 int main() {
 
