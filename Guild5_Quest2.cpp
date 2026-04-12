@@ -1,19 +1,9 @@
-/******************************************************************************
-    The Labyrinth of Echoing Truths
-    TEAM PROJECT STRUCTURE GUILD 5
-    -----------------------------------
-    Person 1 - Game Engine / Main Loop
-    Person 2 - Sentinel System
-    Person 3 - Input Validation
-    Person 4 - Story + Dialogue
-******************************************************************************/
+
 #include <iostream>
 
 using namespace std;
 
-// =====================================================
-// PERSON 2: SENTINEL STRUCT + DATA
-// =====================================================
+
 
 struct Sentinel {
 	string name;
@@ -30,12 +20,6 @@ struct Sentinel {
 	string getYesNoValidation;
 };
 
-/*Sentinel actions:
-- eyes glow
-- speak, grunt
-- Move walls to allow the player to advance in the labyrinth 
-    AND/OR
-- Offer keys to allow the player to open the gate at the end
 
 Sentinel list:
 - Lion
@@ -162,9 +146,6 @@ Sentinel sentinels[8] = {
 };
 
 
-// =====================================================
-// PERSON 4: STORY + ATMOSPHERE FUNCTIONS
-// =====================================================
 
 
 // Intro story
@@ -185,9 +166,6 @@ void showLose() {
 }
 
 
-// =====================================================
-// PERSON 3: INPUT VALIDATION
-// =====================================================
 
 // Validate sentinel/path choice
 int getValidNumber(int min, int max) {
@@ -224,10 +202,6 @@ string getYesNo(int index) {
 }
 
 
-
-// =====================================================
-// PERSON 2: SENTINEL ENCOUNTER LOGIC
-// =====================================================
 
 // Handles ONE sentinel interaction
 bool encounterSentinel(int index) {
@@ -282,9 +256,6 @@ bool encounterSentinel(int index) {
 	return correct;
 }
 
-// =====================================================
-// PERSON 1: PATH SYSTEM
-// =====================================================
 
 // Each row = path
 // Each number = sentinel index
@@ -315,11 +286,6 @@ int choosePath() {
 	pathUsed[index] = true;   // Mark path as used
 	return index;
 }
-
-
-// =====================================================
-//  PERSON 1: MAIN GAME LOOP
-// =====================================================
 
 int main() {
 
