@@ -1,2 +1,3 @@
 # Guild5-Project
-Quest 2: Project guide
+Quest 2: Project guide, 
+Labyrinth of Sentinels is a text-based adventure game where you navigate a mysterious labyrinth guarded by eight stone sentinels, each based on a real person. The labyrinth has three paths to explore, and on each path you will encounter sentinels one by one. Each sentinel will make a statement about themselves ( but they may be telling the truth or deliberately lying). Your job is to decide: is what they said true or false? Answer correctly and you earn a key. Collect 5 keys across all your encounters and the gate opens: YOU WIN. Fail to collect enough and the labyrinth keeps you. Every sentinel has its own personality making each encounter feel distinct. 
