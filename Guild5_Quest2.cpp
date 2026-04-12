@@ -126,16 +126,16 @@ Sentinel sentinels[8] = {
 		"[greeting]",
 		"[Intro Dialogue]..."
 		"What is Adrian's favorite color?",
-		"Green",
-		"Black",
+		"Green.",
+		"Black.",
 		"[correctLine]",
 		"[wrongLine]",
 		"[getYesNoValidation]"
 	},
 	{
-		"The ____ ____", // Caitlyn
-	    "[greeting]",
-	    "[Intro Dialogue]...",
+		"The Sly Fox", // Caitlyn
+	    "You feel sharp eyes observing you...",
+	    "Answer my question correctly and I will let you pass.",
 		"What instrument does Caitlyn play?",
 		"Violin.",
 		"Piano.",
