@@ -1,6 +1,17 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
+C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <vector>
+#include <algorithm>
+#include <chrono>    //time
 
 using namespace std;
 
@@ -20,10 +31,7 @@ struct Sentinel {
 };
 
 Sentinel sentinels[8] = {
-
-    //  Aiso
-    {
-        "The Crimson Lion",
+    { "The Crimson Lion",       //aiso
         "A towering stone lion draped in deep red etches its gaze into you. The air grows heavy.",
         "I am the Crimson Lion. I have stood at this threshold since the first flame was lit. "
         "Many have tried to pass me with guesswork alone. They did not fare well. "
@@ -33,12 +41,9 @@ Sentinel sentinels[8] = {
         "Strategy.",               // false answer
         "The lion's mane shimmers red. \"You see clearly, traveler.\" A key clatters to the floor.",
         "The lion exhales a low, rumbling growl. \"You have misjudged. The stone does not forget.\"",
-        "Answer with Yes or No, nothing more."
-    },
+        "Answer with Yes or No, nothing more." },
 
-    //  Gabby 
-    {
-        "The Cerulean Cheetah",
+    { "The Cerulean Cheetah",          //gabby
         "A sleek stone cheetah, streaked with brilliant blue, snaps its head toward you with unsettling speed.",
         "Swift. Precise. Unforgiving. That is what I am, and that is what this passage demands of you. "
         "I speak one statement — true or false, you decide. Hesitation is the same as being wrong.",
@@ -47,12 +52,9 @@ Sentinel sentinels[8] = {
         "French.",                   // false answer
         "The cheetah's blue markings gleam. \"Fast and correct. You may pass.\" A key slides toward you.",
         "\"Slow and wrong.\" The cheetah turns away with a flick of its stone tail.",
-        "Answer with Yes or No, nothing more."
-    },
+        "Answer with Yes or No, nothing more."  },
 
-    //  Emeka 
-    {
-        "The Emerald Steed",
+    { "The Emerald Steed",             //emeka
         "The corridor trembles as a great green stone horse stamps once and raises its head to face you.",
         "I am the Emerald Steed, and I respect only those with endurance. "
         "The path ahead is long — are you the type to keep moving, or to stop when it gets hard? "
@@ -62,12 +64,9 @@ Sentinel sentinels[8] = {
         "Swimming.",   // false answer
         "The steed snorts and stamps again, this time with approval. \"You kept pace. Well done.\" A key drops.",
         "The horse shakes its stone mane slowly. \"You stumbled. The path remembers those who do.\"",
-        "Answer with Yes or No, nothing more."
-    },
+        "Answer with Yes or No, nothing more." },
 
-    //  Amolika 
-    {
-        "The Midnight Snake",
+    { "The Midnight Snake",        //amolika
         "Welcome, wanderer... the snake has been expecting you.",
         "Few dare walk these shadow-drenched corridors... and fewer still leave unchanged. "
         "I am ancient. I am patient. I have watched a thousand travelers convince themselves they knew the answer. "
@@ -77,12 +76,9 @@ Sentinel sentinels[8] = {
         "Italy.",    // false answer
         "The darkness seems to exhale. \"Yesss... you have seen through the veil.\" A key emerges from the shadows.",
         "A slow, cold hiss fills the corridor. \"Interesting guess. Incorrect, but... interesting.\"",
-        "Answer with Yes or No, nothing more."
-    },
+        "Answer with Yes or No, nothing more." },
 
-    //  Hania 
-    {
-        "The Ashen Lion",
+    { "The Ashen Lion",          //hania
         "A grey stone lion regards you with calm, ancient authority. It does not move. It does not need to.",
         "I am patience carved into stone. I have watched empires rise and crumble from this very spot. "
         "I will not rush you — but I will not repeat myself either. "
@@ -92,12 +88,9 @@ Sentinel sentinels[8] = {
         "Tennis.",     // false answer
         "The ashen lion closes its eyes briefly. \"A composed answer. You have earned your key.\"",
         "The lion opens one eye wider. \"That was not composure. That was a guess. There is a difference.\"",
-        "Answer with Yes or No, nothing more."
-    },
+        "Answer with Yes or No, nothing more." },
 
-    //  Kripa 
-    {
-        "The Lavender Hare",
+    { "The Lavender Hare",          //kripa
         "A small stone hare with pale violet markings peeks out from behind a crumbled pillar, ears flat.",
         "O-oh... you found me. I didn't think anyone would come down this path so soon. "
         "I'm supposed to ask you something — and I will, I promise — I just... "
@@ -108,12 +101,9 @@ Sentinel sentinels[8] = {
         "The hare's ears perk straight up. \"You got it right! I knew you would — well, I hoped.\" "
         "It nudges a key toward you with its nose.",
         "The hare's ears droop. \"Oh... that wasn't it. That's okay. I'm not upset. I'm fine. Really.\"",
-        "Answer with Yes or No, nothing more."
-    },
+        "Answer with Yes or No, nothing more." },
 
-    //  Adrian 
-    {
-        "The Ashen Wolf",
+    { "The Ashen Wolf",      //adrian
         "A grey stone wolf steps from the shadows, unhurried. Its eyes hold something colder than stone.",
         "The pack watches every corridor in this labyrinth. We have seen what you did at the last sentinel. "
         "We remember everything. I ask my question once. "
@@ -124,12 +114,9 @@ Sentinel sentinels[8] = {
         "The wolf holds your gaze a moment longer than comfortable, then dips its head. "
         "\"Correct. The pack acknowledges you.\" A key drops at its paws.",
         "The wolf exhales slowly through its nose. \"Wrong. The pack has noted it.\" It steps back into the dark.",
-        "Answer with Yes or No, nothing more."
-    },
+        "Answer with Yes or No, nothing more." },
 
-    // Caitlyn 
-    {
-        "The Sly Fox",
+    { "The Sly Fox",           //caitlyn
         "You feel sharp eyes on you before you even see the fox. It steps into the torchlight wearing a thin smile.",
         "Ah, a new face. How refreshing. I do so enjoy these little conversations — "
         "they never quite go the way people expect. "
@@ -142,20 +129,22 @@ Sentinel sentinels[8] = {
         "\"Well done. You perceived the truth beneath the trick. A rare quality.\" A key spins across the floor.",
         "The fox lets out a quiet, delighted laugh. \"Alas, you have been deceived. "
         "Don't feel too bad — most are.\"",
-        "Answer with Yes or No, nothing more."
-    }
-
+        "Answer with Yes or No, nothing more." }
 };
 
+// GLOBAL TRACKERS
+int wrongAnswers = 0;
+int score = 0;
+const int maxWrong = 4;
 
-//  Intro / endings 
-
+// INTRO / ENDINGS
 void showIntro() {
     cout << "\nYou wake up in a dark labyrinth, its crumbling hallways lined with torches of blue flame." << endl;
     cout << "The sound of water dripping echoes somewhere in the dark." << endl;
     cout << "You have no idea how you got here — but you know you must find a way out." << endl;
     cout << "Scattered throughout the labyrinth are stone sentinels. Each will speak a statement." << endl;
     cout << "Decide whether it is true or false. Collect 5 keys to open the gate.\n" << endl;
+    cout << "BEWARE Though, If you get 4 wrong answers, you will be stuck in Labyrinth and must try to find the way again.\n" << endl;
 }
 
 void showWin() {
@@ -170,171 +159,137 @@ void showLose() {
     cout << "You have collected fewer than 5 keys. The labyrinth keeps you a little longer.\n" << endl;
 }
 
-
-// Input validation 
-
-int getValidNumber(int min, int max) {
-    int choice;
-
-    if (!(cin >> choice)) {
-        cin.clear();
-        cin.ignore(1000, '\n');
-        cout << "Invalid input. Please enter a number between " << min << " and " << max << ": ";
-        return getValidNumber(min, max);
-    }
-
-    if (choice < min || choice > max) {
-        cout << "Please enter a number between " << min << " and " << max << ": ";
-        return getValidNumber(min, max);
-    }
-
-    return choice;
-}
-
+// YES/NO INPUT
 string getYesNo(int index) {
     string input;
     cin >> input;
 
-    for (char& c : input) c = tolower(c);
+    for (char &c : input) c = tolower(c);
 
     if (input != "yes" && input != "no") {
         cout << sentinels[index].getYesNoValidation << endl;
-        cout << "Do you believe this to be true? (Yes/No): ";
         return getYesNo(index);
     }
-
     return input;
 }
 
-
-// Sentinel encounter 
-
+// SENTINEL ENCOUNTER
 bool encounterSentinel(int index) {
 
-    cout << "\n----------------------------------------" << endl;
-    cout << "  " << sentinels[index].name << endl;
-    cout << "----------------------------------------" << endl;
+    cout << "\n" << sentinels[index].name << endl;
+    cout << sentinels[index].greeting << endl;
+    cout << sentinels[index].introDialogue << endl;
 
-    cout << "\n" << sentinels[index].greeting << endl;
-    cout << "\n" << sentinels[index].introDialogue << endl;
+    int isTruth = rand() % 2;
+    string answer = (isTruth == 0)
+        ? sentinels[index].trueAnswer
+        : sentinels[index].falseAnswer;
 
-    int isTruth = rand() % 2;   // 0 = truth, 1 = lie
-    string answer = (isTruth == 0) ? sentinels[index].trueAnswer
-                                   : sentinels[index].falseAnswer;
+    // FIX: PLAYER IS ASKING
+    cout << "\nYou ask: " << sentinels[index].question << endl;
 
-    cout << "\nThe sentinel says: \"" << sentinels[index].question
-         << " " << answer << "\"" << endl;
+    cout << "Sentinel responds: \"" << answer << "\"\n";
 
-    cout << "\nDo you believe this to be true? (Yes/No): ";
+    cout << "Do you believe this is true? (Yes/No): ";
     string guess = getYesNo(index);
 
-    bool playerSaysYes     = (guess == "yes");
-    bool sentinelToldTruth = (isTruth == 0);
-    bool correct           = (playerSaysYes == sentinelToldTruth);
+    bool playerSaysYes = (guess == "yes");
+    bool correct = (playerSaysYes == (isTruth == 0));
 
-    cout << "\n";
-    if (correct) {
-        cout << sentinels[index].correctLine << endl;
-    } else {
-        cout << sentinels[index].wrongLine << endl;
-    }
+    if (correct) cout << sentinels[index].correctLine << endl;
+    else cout << sentinels[index].wrongLine << endl;
 
     return correct;
 }
 
-
-// Paths & path selection 
-
-int paths[3][3] = {
-    {0, 1, -1},   // Left Path   — Aiso, Gabby
-    {2, 3,  4},   // Middle Path — Emeka, Amolika, Hania
-    {5, 6,  7}    // Right Path  — Kripa, Adrian, Caitlyn
-};
-
-bool pathUsed[3] = {false, false, false};
-
-int choosePath() {
-    cout << "\nThree doors stand before you, each leading somewhere different." << endl;
-    cout << "1. Left Path\n2. Middle Path\n3. Right Path\n";
-
-    int choice = getValidNumber(1, 3);
-    int index  = choice - 1;
-
-    if (pathUsed[index]) {
-        cout << "\nYou have already walked that path. The torches there burn low. Choose another.\n";
-        return choosePath();
-    }
-
-    return index;
-}
-
-
-//  Main 
+auto startTime = chrono::high_resolution_clock::now();
 
 int main() {
 
-    srand(static_cast<unsigned int>(time(0)));
-
-    int score          = 0;
-    int questionsAsked = 0;
-    int pathsRemaining = 3;
+    srand(time(0));
 
     showIntro();
 
-    time_t startTime = time(0);   // Start the clock once the game begins
+    vector<int> pool = {0,1,2,3,4,5,6,7};
+    random_shuffle(pool.begin(), pool.end());
 
-    while (score < 5 && pathsRemaining > 0) {
+    vector<int> pathA(pool.begin(), pool.begin() + 3);
+    vector<int> pathB(pool.begin() + 3, pool.begin() + 6);
+    vector<int> pathC(pool.begin() + 6, pool.end());
 
-        int chosenPath = choosePath();
-        pathUsed[chosenPath] = true;
-        pathsRemaining--;
+    vector<vector<int>> paths = {pathA, pathB, pathC};
 
-        cout << "\nYou step through the door. The stone closes behind you.\n";
+    bool used[3] = {false, false, false};
+    int pathsLeft = 3;
 
-        for (int i = 0; i < 3; i++) {
+    while (score < 5 && pathsLeft > 0) {
 
-            int sentinelIndex = paths[chosenPath][i];
+        int choice;
 
-            if (sentinelIndex == -1) {
-                cout << "\nThe corridor stretches quietly here. No sentinel guards this stretch — only silence.\n";
-                continue;
-            }
+        while (true) {
+          cout << "\nChoose pathway to take (1-3): ";
 
-            bool result = encounterSentinel(sentinelIndex);
-            questionsAsked++;
+        if (!(cin >> choice)) {
+          cin.clear();
+          cin.ignore(1000, '\n');
+          cout << "Invalid input.\n";
+          continue;
+        }
+
+        if (choice >= 1 && choice <= 3 && !used[choice - 1]) break;
+
+    cout << "Uh oh! you just used this, Try another.\n";
+        }
+
+        int p = choice - 1;
+        used[p] = true;
+        pathsLeft--;
+
+        cout << "\nYou enter the corridor...\n";
+
+        for (int idx : paths[p]) {
+
+            bool result = encounterSentinel(idx);
 
             if (result) score++;
+            else wrongAnswers++;
 
-            cout << "\n[Keys collected: " << score << " / 5]\n";
+            cout << "\n[Keys: " << score << "/5]";
+            cout << "  [Wrong: " << wrongAnswers << "/4]\n";
+
+            // FIX: HARD LOSS CONDITION
+            if (wrongAnswers >= maxWrong) {
+              cout << "\n[Wrong Answers: " << wrongAnswers << "/4]\n";
+              showLose();
+              return 0;
+            }
 
             if (score >= 5) break;
         }
 
         if (score >= 5) break;
-
-        if (pathsRemaining > 0) {
-            cout << "\nYou find your way back to the entrance chamber.\n";
-        } else {
-            cout << "\nYou have walked every path the labyrinth offers.\n";
-        }
     }
 
-    cout << "\n========================================" << endl;
+    cout << "\n====================\n";
 
     if (score >= 5) {
-        showWin();
-    } else {
-        showLose();
+
+    auto endTime = chrono::high_resolution_clock::now();
+    auto duration = chrono::duration_cast<chrono::seconds>(endTime - startTime);
+
+    int minutes = duration.count() / 60;
+    int seconds = duration.count() % 60;
+
+    showWin();
+
+    cout << "\nTIME TAKEN: " << minutes << "m " << seconds << "s\n";
+    }
+    else {
+    showLose();
     }
 
-    int elapsedSeconds = static_cast<int>(time(0) - startTime);
-    int minutes        = elapsedSeconds / 60;
-    int seconds        = elapsedSeconds % 60;
-
-    cout << "Keys collected : " << score          << " / 5"    << endl;
-    cout << "Questions faced: " << questionsAsked              << endl;
-    cout << "Time taken     : " << minutes << "m " << seconds << "s" << endl;
-    cout << "========================================\n"        << endl;
+    cout << "Keys: " << score << "/5\n";
+    cout << "Wrong: " << wrongAnswers << "\n";
 
     return 0;
 }
