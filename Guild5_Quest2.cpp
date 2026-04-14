@@ -227,10 +227,10 @@ int main() {
         int choice;
 
         while (true) {
-          cout << "\nChoose pathway to take (1-3): ";
           cout << "\n1. Left Path ";
           cout << "\n2. Middle Path ";
           cout << "\n3. Right Path ";
+          cout << "\nChoose pathway to take (1-3): ";
 
         if (!(cin >> choice)) {
           cin.clear();
